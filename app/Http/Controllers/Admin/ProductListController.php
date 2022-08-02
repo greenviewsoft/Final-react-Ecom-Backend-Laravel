@@ -48,8 +48,12 @@ public function ProductBySearch(Request $request){
 } // end method 
 
 
+public function SimilarProduct(Request $request){
+        $subcategory = $request->subcategory;
+        $productlist = ProductList::where('subcategory',$subcategory)->orderBy('id','desc')->limit(6)->get();
+        return $productlist;
 
-
+    }// End Method 
 
 
 
