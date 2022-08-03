@@ -15,6 +15,11 @@ use App\Http\Controllers\User\ForgetController;
 use App\Http\Controllers\User\ResetController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Admin\ReviewController;
+use App\Http\Controllers\Admin\ProductCartController;
+use App\Http\Controllers\Admin\FavouriteController;
+
+
+
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
@@ -89,3 +94,23 @@ Route::get('/similar/{subcategory}',[ProductListController::class, 'SimilarProdu
 
 // Review Product Route
 Route::get('/reviewlist/{id}',[ReviewController::class, 'ReviewList']);
+
+// Product Cart Route
+Route::post('/addtocart',[ProductCartController::class, 'AddToCart']);
+
+
+//  Cart Count Route
+Route::get('/cartcount/{product_code}',[ProductCartController::class, 'CartCount']);
+
+
+//  Favourite Route
+Route::get('/favourit/{product_code}/{email}',[FavouriteController::class, 'AddFavourit']);
+
+//  Favourite Route
+Route::get('/favouritelist/{email}',[FavouriteController::class, 'FavouriteList']);
+
+//  Favourite Remove Route
+Route::get('/favouriteremove/{product_code}/{email}',[FavouriteController::class, 'FavouriteRemove']);
+
+//  Favourite Count Route
+Route::get('/favouritecount/{product_code}',[FavouriteController::class, 'FavCount']);
