@@ -114,3 +114,14 @@ Route::get('/favouriteremove/{product_code}/{email}',[FavouriteController::class
 
 //  Favourite Count Route
 Route::get('/favouritecount/{product_code}',[FavouriteController::class, 'FavCount']);
+
+//  Cart List Route
+Route::get('/cartlist/{email}',[ProductCartController::class, 'CartList']);
+
+// Remove Cart List Route
+Route::get('/removecartlist/{id}',[ProductCartController::class, 'RemoveCartList']);
+
+// price  Cart item Route
+Route::get('/cartitemplus/{id}/{quantity}/{price}',[ProductCartController::class, 'CartItemPlus']);
+
+Route::get('/cartitemminus/{id}/{quantity}/{price}',[ProductCartController::class, 'CartItemMinus']);
