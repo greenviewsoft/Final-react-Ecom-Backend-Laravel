@@ -133,7 +133,7 @@ public function CartCount(Request $request){
             $cartInsertDeleteResult = "";
 
             $resultInsert = CartOrder::insert([
-                'invoice_no' => "Easy".$invoice_no,
+                'invoice_no' => "EShop".$invoice_no,
                 'product_name' => $CartListItem['product_name'],
                 'product_code' => $CartListItem['product_code'],
                 'size' => $CartListItem['size'],
@@ -165,5 +165,16 @@ public function CartCount(Request $request){
             return $cartInsertDeleteResult;
 
     }// End Method 
+
+
+
+
+        public function OrderListByUser(Request $request){
+        $email = $request->email;
+        $result = CartOrder::where('email',$email)->orderBy('id','DESC')->get();
+        return $result;
+
+    }// End Method 
+
 
 }
