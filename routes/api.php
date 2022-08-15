@@ -59,7 +59,7 @@ Route::get('/allsiteinfo',[SiteInfoController::class,'AllSiteInfo']);
 
 
 //all Category Route 
-Route::get('/allcategory',[CategoryController::class,'AllCategory']);
+Route::get('/allcategory',[CategoryController::class,'AllCategoryDetails']);
 
 // ProductList Route 
 Route::get('/productlistbyremark/{remark}',[ProductListController::class,'ProductListByRemark']);
@@ -136,3 +136,6 @@ Route::post('/postreview',[ReviewController::class, 'PostReview']);
 
 // Review Product Route
 Route::get('/reviewlist/{product_code}',[ReviewController::class, 'ReviewList']);
+
+
+
