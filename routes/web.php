@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\ProductDetailsController;
+use App\Http\Controllers\Admin\ProductListController;
 
 
 
@@ -94,10 +96,8 @@ Route::get('/delete/{id}',[CategoryController::class, 'DeleteSubCategory'])->nam
 });
 
 
-
-Route::prefix('AllSlider')->group(function(){
-
 //  Slider 
+Route::prefix('AllSlider')->group(function(){
 
 Route::get('/allslider',[SliderController::class, 'GetAllSlider'])->name('all.slider');
 
@@ -112,7 +112,26 @@ Route::post('/sliderupdate',[SliderController::class, 'SliderUpdate'])->name('sl
 Route::get('/delete/{id}',[SliderController::class, 'SliderDelete'])->name('slider.delete');
 
 
+});
 
+
+
+
+//  Products 
+
+Route::prefix('product')->group(function(){
+
+Route::get('/product',[ProductListController::class, 'GetAllProduct'])->name('all.product');
+
+Route::get('/addslider',[SliderController::class, 'AddSlider'])->name('add.slider');
+
+Route::Post('/sliderstore',[SliderController::class, 'SliderStore'])->name('slider.store');
+
+Route::get('/edit/{id}',[SliderController::class, 'SliderEdit'])->name('slider.edit');
+
+Route::post('/sliderupdate',[SliderController::class, 'SliderUpdate'])->name('slider.update');
+
+Route::get('/delete/{id}',[SliderController::class, 'SliderDelete'])->name('slider.delete');
 
 
 });

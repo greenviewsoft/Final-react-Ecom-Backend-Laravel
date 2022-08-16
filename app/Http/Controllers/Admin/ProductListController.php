@@ -57,5 +57,13 @@ public function SimilarProduct(Request $request){
 
 
 
+    public function GetAllProduct(){
+  $products =  ProductList::latest()->get();
+  return view('backend.product.product_all',compact('products'));
+
+    }// End Method
+
+
+
 
 }

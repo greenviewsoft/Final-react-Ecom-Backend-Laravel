@@ -65,6 +65,24 @@
 					</ul>
 				</li>
 				<li>
+
+
+<li>
+					<a class="has-arrow" href="javascript:;">
+						<div class="parent-icon"><i class="bx bx-repeat"></i>
+						</div>
+						<div class="menu-title">Products</div>
+					</a>
+					<ul>
+						<li> <a href="{{ route('all.product') }}"><i class="bx bx-right-arrow-alt"></i>All Product </a>
+						</li>
+						<li> <a href=""><i class="bx bx-right-arrow-alt"></i>Add Product</a>
+						</li>
+						
+					</ul>
+				</li>
+				<li>
+
 					<a class="has-arrow" href="javascript:;">
 						<div class="parent-icon"> <i class="bx bx-donate-blood"></i>
 						</div>
