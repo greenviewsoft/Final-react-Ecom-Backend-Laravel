@@ -28,6 +28,7 @@
 
 
 <link href="{{ asset('backend/assets/plugins/input-tags/css/tagsinput.css') }}" rel="stylesheet" />
+<link href="{{ asset('backend/assets/plugins/input-tags/css/tagsinput.css') }}" rel="stylesheet" />
 	<title>Sultan Shop ADMIN</title>
 </head>
 
@@ -135,7 +136,7 @@ $(function(){
 
 	
 </script>
-	
+	<script src="{{ asset('backend/assets/plugins/input-tags/js/tagsinput.js') }}"></script>
 </body>
 
 </html>
