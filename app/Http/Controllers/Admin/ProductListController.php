@@ -62,7 +62,9 @@ public function SimilarProduct(Request $request){
 
 
     public function GetAllProduct(){
-  $products =  ProductList::latest()->paginate(10);
+  //only paginate  $products =  ProductList::latest()->paginate(10);
+        //paginate with letest product in first
+  $products = ProductList::orderBy('id', 'desc')->paginate('10');
   return view('backend.product.product_all',compact('products'));
 
     }// End Method

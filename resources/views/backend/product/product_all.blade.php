@@ -70,7 +70,7 @@
        
 
 
-     {{ $products->links('vendor.pagination.custom') }}	
+     {{ $products->links('vendor.pagination.custom') }}
     
 
    
