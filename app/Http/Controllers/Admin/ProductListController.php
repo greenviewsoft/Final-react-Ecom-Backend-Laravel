@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\ProductList;
 use App\Models\Category;
 use App\Models\Subcategory;
+use App\Models\ProductDetails;
 use Image;
 
 class ProductListController extends Controller
@@ -103,7 +104,66 @@ public function StoreProduct(Request $request){
 
         /////// Insert Into Product Details Table ////// 
 
+        $image1 = $request->file('image_one');
+        $name_gen1 = hexdec(uniqid()).'.'.$image1->getClientOriginalExtension();
+        Image::make($image1)->resize(711,960)->save('upload/productdetails/'.$name_gen1);
+        $save_url1 = 'http://127.0.0.1:8000/upload/productdetails/'.$name_gen1;
 
-    } // End Method 
+  
+        $image2 = $request->file('image_two');
+        $name_gen2 = hexdec(uniqid()).'.'.$image2->getClientOriginalExtension();
+        Image::make($image2)->resize(711,960)->save('upload/productdetails/'.$name_gen2);
+        $save_url2 = 'http://127.0.0.1:8000/upload/productdetails/'.$name_gen2;
+
+
+        $image3 = $request->file('image_three');
+        $name_gen3 = hexdec(uniqid()).'.'.$image3->getClientOriginalExtension();
+        Image::make($image3)->resize(711,960)->save('upload/productdetails/'.$name_gen3);
+        $save_url3 = 'http://127.0.0.1:8000/upload/productdetails/'.$name_gen3; 
+
+
+        $image4 = $request->file('image_four');
+        $name_gen4 = hexdec(uniqid()).'.'.$image4->getClientOriginalExtension();
+        Image::make($image1)->resize(711,960)->save('upload/productdetails/'.$name_gen4);
+        $save_url4 = 'http://127.0.0.1:8000/upload/productdetails/'.$name_gen4;
+
+
+         ProductDetails::insert([
+
+             'product_id' => $product_id,
+             'image_one' => $save_url1,
+             'image_two' => $save_url2,
+             'image_three' => $save_url3,
+             'image_four' => $save_url4,
+             'short_description' =>$request->short_description,
+             'color' => $request->color,
+             'size'  => $request->size,
+             'long_description' =>$request->long_description, 
+
+
+
+         ]);
+
+   $notification = array(
+            'message' => 'Product Inserted Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.product')->with($notification);
+
+}// End method
+
+
+
+public function ProductEdit($id){
+
+        $category = Category::orderBy('category_name','ASC')->get();
+        $subcategory = Subcategory::orderBy('id','ASC')->get();
+        $product = ProductList::findOrFail($id);
+        $details = ProductDetails::where('product_id',$id)->get();
+
+ return view('backend.product.product_edit',compact('category','subcategory','product','details'));
+
+}// end method
 
 }

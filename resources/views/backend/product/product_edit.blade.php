@@ -11,7 +11,7 @@
 			<ol class="breadcrumb mb-0 p-0">
 				<li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
 				</li>
-				<li class="breadcrumb-item active" aria-current="page">Add New Product</li>
+				<li class="breadcrumb-item active" aria-current="page">Edit Product</li>
 			</ol>
 		</nav>
 	</div>
@@ -19,7 +19,7 @@
 <!--end breadcrumb-->
 <div class="card">
   <div class="card-body p-4">
-	  <h5 class="card-title">Add New Product</h5>
+	  <h5 class="card-title">Edit Product</h5>
 	  <hr>
        <div class="form-body mt-4">
 
@@ -33,12 +33,12 @@
 
 			<div class="mb-3">
 				<label for="inputProductTitle" class="form-label">Product Title</label>
-								<input type="text" name="title" class="form-control" id="inputProductTitle" placeholder="Enter product Title">
+								<input type="text" name="title" class="form-control" id="inputProductTitle" value="{{ $product->title }}" >
 			  </div>
 
 			  <div class="mb-3">
 			  	<label for="inputProductTitle" class="form-label">Product Code</label>
-				<input type="text" name="product_code" class="form-control" id="inputProductTitle" placeholder="Enter product code">
+				<input type="text" name="product_code" class="form-control" id="inputProductTitle"  value="{{ $product->product_code }}">
 			  </div>
 
 
@@ -50,7 +50,7 @@
 
 
 	 <div class="mb-3">
-	 	<img id="showImage" src="{{ url('upload/no_image.jpg')   }}" style="width:100px; height: 100px;" > 
+	 	<img id="showImage" src="{{ asset($product->image)}}" style="width:100px; height: 100px;" > 
 	 </div>
 
 
@@ -77,17 +77,22 @@
 	 </div>
 
 
-
+@foreach($details as $item)
  <div class="mb-3">
 	<label for="inputProductDescription" class="form-label">Short Description</label>
-	<textarea name="short_description" class="form-control" id="inputProductDescription" rows="3"></textarea>
+	<textarea name="short_description" class="form-control" id="inputProductDescription" rows="3">
+		{{ $item->short_description }}
+	</textarea>
   </div>
 
 
  <div class="mb-3">
 	<label for="inputProductDescription" class="form-label">Long Description</label>
-	<textarea id="mytextarea" name="long_description">Hello, Text!</textarea>
+	<textarea id="mytextarea" name="long_description">
+		{{ $item->long_description }}
+	</textarea>
   </div>
+   @endforeach
 </div>
 		   </div>
 		   <div class="col-lg-4">
@@ -95,13 +100,13 @@
   <div class="row g-3">
 	<div class="col-md-6">
 		<label for="inputPrice" class="form-label">Price</label>
-		<input type="text" name="price" class="form-control" id="inputPrice" placeholder="0.00">
+		<input type="text" name="price" class="form-control" id="inputPrice"  value="{{ $product->price }}">
 	  </div>
 
 
 	  <div class="col-md-6">
 		<label for="inputCompareatprice" class="form-label">Special Price</label>
-		<input type="text" name="special_price" class="form-control" id="inputCompareatprice" placeholder="0.00">
+		<input type="text" name="special_price" class="form-control" id="inputCompareatprice" value="{{ $product->special_price }}">
 	  </div>
 
 
@@ -111,7 +116,8 @@
 
 	   <option selected="">Select Category</option>
 		@foreach($category as $item)
-		<option value="{{ $item->category_name }}"> {{ $item->category_name }}</option>
+		<option value="{{ $item->category_name }}" {{ $item->category_name == $product->category ? 'selected': ''
+		 }} >  {{ $item->category_name }}</option>
 	 	@endforeach
 		  </select>
 	  </div>
@@ -120,9 +126,9 @@
 		<label for="inputProductType" class="form-label">Product SubCategory</label>
 		<select name="subcategory" class="form-select" id="inputProductType">
 
-	   <option selected="">Select SubCategory</option>
-		@foreach($subcategory as $item)
-		<option value="{{ $item->subcategory_name }}"> {{ $item->subcategory_name }}</option>
+	    <option selected="">Select SubCategory</option>
+		@foreach($subcategory as $item2)
+		 <option value="{{ $item2->subcategory_name }}" {{ $item2->subcategory_name == $product->subcategory ? 'selected': '' }}>  {{ $item2->subcategory_name }}</option>
 	 	@endforeach
 		  </select>
 	  </div>
@@ -140,39 +146,39 @@
 		  </select>
 	  </div>
 
-
+@foreach($details as $item)
 	<div class="mb-3">
 	<label class="form-label">Product Size</label>
-	 <input type="text" name="size" class="form-control visually-hidden" data-role="tagsinput" value="S,M,L,XL">
+	 <input type="text" name="size" class="form-control visually-hidden" data-role="tagsinput" value="{{ $item->size }}">
 </div>
 
 
 	<div class="mb-3">
 	<label class="form-label">Product Color</label>
-	 <input type="text" name="color" class="form-control visually-hidden" data-role="tagsinput" value="Red,White,Black">
+	 <input type="text" name="color" class="form-control visually-hidden" data-role="tagsinput" value="{{ $item->color }}">
 </div>
-
+@endforeach
 
 <div class="form-check">
-	 <input class="form-check-input" name="remark" type="checkbox" value="FEATURED" id="flexCheckDefault">
-	 <label class="form-check-label" for="flexCheckDefault">FEATURED</label>
+	 <input class="form-check-input" name="remark" type="checkbox" value="FEATURED" id="flexCheckDefault1" {{ $product->remark == 'FEATURED' ? 'checked' : '' }} >
+	 <label class="form-check-label" for="flexCheckDefault1">FEATURED</label>
 	 </div>
 
 	 <div class="form-check">
-	 <input class="form-check-input" name="remark" type="checkbox" value="NEW" id="flexCheckDefault">
-	 <label class="form-check-label" for="flexCheckDefault">NEW</label>
+	 <input class="form-check-input" name="remark" type="checkbox" value="NEW" id="flexCheckDefault2" {{ $product->remark == 'NEW' ? 'checked' : '' }} >
+	 <label class="form-check-label" for="flexCheckDefault2">NEW</label>
 	 </div>
 
 
 	 <div class="form-check">
-	 <input class="form-check-input" name="remark" type="checkbox" value="COLLECTION" id="flexCheckDefault">
-	 <label class="form-check-label" for="flexCheckDefault">COLLECTION</label>
+	 <input class="form-check-input" name="remark" type="checkbox" value="COLLECTION" id="flexCheckDefault3" {{ $product->remark == 'COLLECTION' ? 'checked' : '' }} >
+	 <label class="form-check-label" for="flexCheckDefault3">COLLECTION</label>
 	 </div>
 
 
 	  <div class="col-12">
 		  <div class="d-grid">
-             <button type="submit" class="btn btn-primary">Save Product</button>
+             <button type="submit" class="btn btn-primary">Update  Product</button>
 		  </div>
 	  </div>
   </div> 
