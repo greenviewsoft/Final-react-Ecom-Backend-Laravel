@@ -39,4 +39,26 @@ public function PostReview(Request $request){
 
     } // End Method 
 
+
+
+    public function AllReview(){
+
+    $allreview = ProductReview::latest()->get();
+
+ return view('backend.review.all_review',compact('allreview'));
+
+    }// end method 
+
+    public function ReviewDelete($id){
+
+     ProductReview::findOrFail($id)->delete();
+
+    $notification = array(
+            'message' => 'Review Delete  Successfully',
+            'alert-type' => 'success'
+        );
+          return redirect()->back()->with($notification);
+
+}//End Method
+
 }

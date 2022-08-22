@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\ProductDetailsController;
 use App\Http\Controllers\Admin\ProductListController;
 use App\Http\Controllers\Admin\ContactController; 
+use App\Http\Controllers\Admin\ReviewController; 
+use App\Http\Controllers\Admin\SiteInfoController; 
 
 
 /*
@@ -129,7 +131,7 @@ Route::Post('/store',[ProductListController::class, 'StoreProduct'])->name('prod
 
 Route::get('/edit/{id}',[ProductListController::class, 'ProductEdit'])->name('product.edit');
 
-Route::post('/sliderupdate',[SliderController::class, 'SliderUpdate'])->name('slider.update');
+Route::post('/product/update',[ProductListController::class, 'ProductUpdate'])->name('product.update');
 
 Route::get('/delete/{id}',[SliderController::class, 'SliderDelete'])->name('slider.delete');
 
@@ -138,3 +140,18 @@ Route::get('/delete/{id}',[SliderController::class, 'SliderDelete'])->name('slid
 
 /// Contact Message Route 
 Route::get('/all/message',[ContactController::class, 'GetAllMessage'])->name('contact.message'); 
+Route::get('/all/delete/{id}',[ContactController::class, 'ContactDelete'])->name('contact.delete'); 
+
+
+
+// Products Review Route 
+Route::get('/all/review',[ReviewController::class, 'AllReview'])->name('all.review'); 
+Route::get('/review/delete/{id}',[ReviewController::class, 'ReviewDelete'])->name('review.delete'); 
+
+
+
+// Site INFO Route 
+Route::get('/getsite/info',[SiteInfoController::class, 'GetSiteInfo'])->name('getsite.info'); 
+Route::post('/updatesite/info',[SiteInfoController::class, 'UpdateSiteInfo'])->name('update.siteinfo'); 
+
+

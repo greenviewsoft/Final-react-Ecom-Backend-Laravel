@@ -23,10 +23,9 @@
 	  <hr>
        <div class="form-body mt-4">
 
-<form method="post" action="{{ route('product.store') }}" enctype="multipart/form-data"> 
+<form method="post" action="{{ route('product.update') }}" enctype="multipart/form-data">
 	 @csrf
-
-
+<input type="hidden" name="id" value="{{ $product->id }}">
 	    <div class="row">
 		   <div class="col-lg-8">
            <div class="border border-3 p-4 rounded">
