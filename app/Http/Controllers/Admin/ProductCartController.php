@@ -177,4 +177,28 @@ public function CartCount(Request $request){
     }// End Method 
 
 
+
+
+
+
+
+
+
+
+/////////////////////// order Prosses From Backend ////////////////////////////
+
+
+public function PendingOrder(){
+
+$orders = CartOrder::where('order_status','Pending')->orderBy('id','DESC')->get();
+
+return view('backend.orders.pending_orders',compact('orders'));
+
+}//end method
+
+
+
+
+
+
 }

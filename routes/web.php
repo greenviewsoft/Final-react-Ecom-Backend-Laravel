@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ProductListController;
 use App\Http\Controllers\Admin\ContactController; 
 use App\Http\Controllers\Admin\ReviewController; 
 use App\Http\Controllers\Admin\SiteInfoController; 
+use App\Http\Controllers\Admin\ProductCartController; 
 
 
 /*
@@ -155,3 +156,16 @@ Route::get('/getsite/info',[SiteInfoController::class, 'GetSiteInfo'])->name('ge
 Route::post('/updatesite/info',[SiteInfoController::class, 'UpdateSiteInfo'])->name('update.siteinfo'); 
 
 
+
+
+
+//  Order Mange 
+
+Route::prefix('order')->group(function(){
+
+Route::get('/pending',[ProductCartController::class, 'PendingOrder'])->name('pending.order');
+
+
+
+
+});
